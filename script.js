@@ -1,4 +1,3 @@
-//your code here
 function sortBandNames(bandNames) {
   const articles = ['a', 'an', 'the'];
 
@@ -11,14 +10,22 @@ function sortBandNames(bandNames) {
   return sortedNames;
 }
 
-// Example usage
-const bandNames = ['The Virupaksha Temple', 'Victoria Memorial', 'Tajmahal'];
+document.getElementById('submit').addEventListener('click', () => {
+  const inputElement = document.getElementById('input');
+  const input = inputElement.value;
 
-const sortedBandNames = sortBandNames(bandNames);
+  const bandNames = input.split(',').map(name => name.trim());
 
-const ulElement = document.getElementById('band');
-sortedBandNames.forEach((name) => {
-  const liElement = document.createElement('li');
-  liElement.textContent = name;
-  ulElement.appendChild(liElement);
+  const sortedBandNames = sortBandNames(bandNames);
+
+  const ulElement = document.getElementById('band');
+  ulElement.innerHTML = ''; // Clear existing list
+
+  sortedBandNames.forEach((name) => {
+    const liElement = document.createElement('li');
+    liElement.textContent = name;
+    ulElement.appendChild(liElement);
+  });
+
+  inputElement.value = ''; // Clear input
 });
